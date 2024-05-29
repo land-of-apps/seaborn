@@ -9,3 +9,8 @@ seaborn.egg-info/
 cover/
 .idea
 .pytest_cache/
+tmp/appmap/
+appmap.log
+venv
+seaborn.patch
+*.tar.xz
