@@ -24,7 +24,7 @@ jobs:
       - name: Install seaborn
         run: |
           pip install pyparsing
-          pip install --upgrade pip wheel pytest
+          pip install --upgrade pip wheel pytest nose
           pip install .[dev,stats] latest
           pip install appmap
 
