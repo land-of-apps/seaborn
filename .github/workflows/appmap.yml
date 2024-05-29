@@ -1,0 +1,43 @@
+name: AppMap
+
+on:
+  push:
+
+env:
+  NB_KERNEL: python
+  MPLBACKEND: Agg
+  PYDEVD_DISABLE_FILE_VALIDATION: 1
+
+jobs:
+  appmap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          allow-prereleases: true
+
+      - name: Install seaborn
+        run: |
+          pip install pyparsing
+          pip install --upgrade pip wheel pytest
+          pip install .[dev,stats] latest
+          pip install appmap
+
+      - name: Run tests
+        run: | 
+          appmap-python make test || true
+
+      - name: Collect AppMap data
+        run: |
+          tar -cJf seaborn-0.10.tar.xz tmp/appmap appmap.yml
+
+      - name: Save as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: seaborn-0.10.tar.xz
+          path: seaborn-0.10.tar.xz
