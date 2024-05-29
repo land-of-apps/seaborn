@@ -33,7 +33,7 @@ INSTALL_REQUIRES = [
     'numpy>=1.13.3',
     'scipy>=1.0.1',
     'pandas>=0.22.0',
-    'matplotlib>=2.1.2',
+    'matplotlib==3.8.4',
 ]
 
 
